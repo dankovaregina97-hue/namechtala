@@ -8,7 +8,15 @@ import settingsJson from "../content/settings.json";
 
 export type Service = { title: string; duration: string; price: number; from?: boolean };
 export type ServiceGroup = { title: string; services: Service[] };
-export type Master = { name: string; role: string; photo?: string };
+export type Master = {
+  name: string;
+  role: string;
+  photo?: string;
+  bio?: string;
+  quote?: string;
+  phrases?: string[];
+  works?: string[];
+};
 export type MasterGroup = { title: string; masters: Master[] };
 
 export const settings = settingsJson as {
@@ -87,3 +95,35 @@ export function servicesCountLabel(count: number): string {
   if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) return `${count} услуги`;
   return `${count} услуг`;
 }
+
+const translit: Record<string, string> = {
+  а: "a", б: "b", в: "v", г: "g", д: "d", е: "e", ё: "e", ж: "zh", з: "z", и: "i", й: "y", к: "k", л: "l",
+  м: "m", н: "n", о: "o", п: "p", р: "r", с: "s", т: "t", у: "u", ф: "f", х: "kh", ц: "ts", ч: "ch", ш: "sh",
+  щ: "shch", ъ: "", ы: "y", ь: "", э: "e", ю: "yu", я: "ya"
+};
+
+export function slugify(name: string): string {
+  const value = name
+    .toLowerCase()
+    .split("")
+    .map((ch) => translit[ch] ?? ch)
+    .join("")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+  return value || "master";
+}
+
+export type MasterWithMeta = Master & { slug: string; group: string };
+
+// Плоский список мастеров со ссылкой (slug) и направлением; одинаковые имена получают суффикс -2, -3…
+export const allMasters: MasterWithMeta[] = (() => {
+  const used = new Map<string, number>();
+  return masterGroups.flatMap((group) =>
+    group.masters.map((master) => {
+      const base = slugify(master.name);
+      const count = (used.get(base) ?? 0) + 1;
+      used.set(base, count);
+      return { ...master, slug: count === 1 ? base : `${base}-${count}`, group: group.title };
+    })
+  );
+})();

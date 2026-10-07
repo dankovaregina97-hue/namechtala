@@ -415,7 +415,21 @@ img {
 }
 
 .master-card {
+  display: block;
   text-align: center;
+  color: inherit;
+}
+
+.master-card:hover .master-photo {
+  border-color: var(--brand);
+}
+
+.master-more {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: var(--brand);
 }
 
 .master-photo {
@@ -617,4 +631,75 @@ img {
   margin: 12px 0 0;
   font-size: 14px;
   color: var(--ink-soft);
+}
+
+/* ---------- master profile ---------- */
+.back-link {
+  display: inline-block;
+  margin-bottom: 28px;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+}
+
+.back-link:hover {
+  color: var(--brand);
+}
+
+.profile-head {
+  display: flex;
+  align-items: center;
+  gap: clamp(24px, 5vw, 56px);
+  flex-wrap: wrap;
+}
+
+.profile-photo {
+  display: block;
+  width: clamp(160px, 24vw, 260px);
+  height: clamp(160px, 24vw, 260px);
+  border-radius: 50%;
+  object-fit: cover;
+  flex: none;
+}
+
+.profile-photo.master-initial {
+  font-size: clamp(64px, 10vw, 110px);
+}
+
+.profile-quote {
+  margin: clamp(40px, 6vw, 72px) 0 0;
+  padding-left: 24px;
+  border-left: 2px solid var(--brand);
+  font-family: var(--font-serif), Georgia, serif;
+  font-style: italic;
+  font-size: clamp(26px, 3.6vw, 40px);
+  line-height: 1.25;
+  color: var(--brand-deep);
+}
+
+.profile-bio {
+  margin-top: 32px;
+}
+
+.phrases {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.phrases li {
+  padding: 10px 20px;
+  border-radius: 999px;
+  background: var(--bg-tint);
+  border: 1px solid var(--line);
+  color: var(--ink);
+}
+
+.profile-photo.master-initial {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

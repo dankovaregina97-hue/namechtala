@@ -1,13 +1,17 @@
 import type { Metadata } from "next";
 import { BookButton } from "../components/BookButton";
 import { Reveal } from "../components/Reveal";
-import { works } from "../content";
+import { allMasters, works } from "../content";
 
 export const metadata: Metadata = { title: "Работы — namechtala" };
 
 export default function WorksPage() {
-  const groups = new Map<string, typeof works.items>();
-  for (const item of works.items) {
+  const fromMasters = allMasters.flatMap((master) =>
+    (master.works ?? []).filter(Boolean).map((image) => ({ image, master: master.name, category: master.group }))
+  );
+  const items = [...fromMasters, ...works.items];
+  const groups = new Map<string, typeof items>();
+  for (const item of items) {
     const key = item.category?.trim() || "";
     groups.set(key, [...(groups.get(key) ?? []), item]);
   }
@@ -28,7 +32,7 @@ export default function WorksPage() {
             </div>
           </Reveal>
 
-          {works.items.length === 0 ? (
+          {items.length === 0 ? (
             <p className="lede">Фотографии скоро появятся здесь</p>
           ) : (
             [...groups.entries()].map(([category, items]) => (
