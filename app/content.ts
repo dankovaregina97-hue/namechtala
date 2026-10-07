@@ -22,6 +22,8 @@ export const settings = settingsJson as {
     phone: string;
     email: string;
     address: string;
+    max: string;
+    maxPhone: string;
     yandexMaps: string;
     twoGis: string;
   };

@@ -159,8 +159,10 @@ collections:
             name: contacts
             widget: object
             fields:
-              - { label: Telegram (ссылка), name: telegram, widget: string, required: false, hint: "https://t.me/username" }
+              - { label: Telegram (ссылка), name: telegram, widget: string, required: false, hint: "https://t.me/namechtala_kznn" }
               - { label: WhatsApp (ссылка), name: whatsapp, widget: string, required: false, hint: "https://wa.me/79990000000" }
+              - { label: MAX (ссылка на профиль), name: max, widget: string, required: false, hint: "В приложении MAX: Профиль → Поделиться → скопировать ссылку (вида https://max.ru/u/...)" }
+              - { label: MAX (номер телефона), name: maxPhone, widget: string, required: false, hint: "+7 999 000-00-00. Если ссылка на профиль не указана, значок MAX копирует этот номер" }
               - { label: Instagram (ссылка), name: instagram, widget: string, required: false }
               - { label: Телефон, name: phone, widget: string, required: false, hint: "+7 999 000-00-00" }
               - { label: Email, name: email, widget: string, required: false }

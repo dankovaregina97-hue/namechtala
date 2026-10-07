@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { siteConfig } from "../content";
+import { SocialLinks } from "./SocialLinks";
 import { navLinks } from "./nav";
 
 export function SiteFooter() {
@@ -31,6 +32,7 @@ export function SiteFooter() {
               </li>
             ))}
         </ul>
+        <SocialLinks />
         <span className="footer-copy">© {new Date().getFullYear()} {siteConfig.name}</span>
       </div>
     </footer>

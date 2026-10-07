@@ -2,15 +2,14 @@ import type { Metadata } from "next";
 import { BookButton } from "../components/BookButton";
 import { ButtonLink } from "../components/ButtonLink";
 import { Reveal } from "../components/Reveal";
+import { SocialLinks } from "../components/SocialLinks";
 import { siteConfig } from "../content";
 
 export const metadata: Metadata = { title: "Контакты — namechtala" };
 
 export default function ContactPage() {
-  const { telegram, whatsapp, instagram, phone, email, address, yandexMaps, twoGis } = siteConfig.contacts;
+  const { instagram, phone, email, address, yandexMaps, twoGis } = siteConfig.contacts;
   const buttons = [
-    { href: telegram, label: "Telegram" },
-    { href: whatsapp, label: "WhatsApp" },
     { href: instagram, label: "Instagram" }
   ].filter((item) => item.href);
   const maps = [
@@ -31,6 +30,7 @@ export default function ContactPage() {
             <div className="actions">
               <BookButton />
             </div>
+            <SocialLinks variant="contact" />
             {hasAny ? (
               <>
                 <div className="actions">
