@@ -4,6 +4,12 @@
       "title": "Маникюр",
       "services": [
         {
+          "title": "Бондирование ногтей VIP-мастер",
+          "duration": "1 ч",
+          "price": 2700,
+          "from": false
+        },
+        {
           "title": "Бондирование ногтей",
           "duration": "1 ч 30 мин",
           "price": 2200,
@@ -126,12 +132,6 @@
           "title": "Ремонт ногтя",
           "duration": "от 15 мин",
           "price": 150,
-          "from": false
-        },
-        {
-          "title": "Бондирование ногтей VIP-мастер",
-          "duration": "1 ч",
-          "price": 2700,
           "from": false
         },
         {
