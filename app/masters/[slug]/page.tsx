@@ -26,10 +26,11 @@ export default async function MasterPage({ params }: PageProps<"/masters/[slug]"
   const master = allMasters.find((item) => item.slug === slug);
   if (!master) notFound();
 
+  const tags = (master.tags ?? []).filter(Boolean);
   const phrases = (master.phrases ?? []).filter(Boolean);
   const works = (master.works ?? []).filter(Boolean);
   const paragraphs = (master.bio ?? "").split(/\n{2,}/).filter(Boolean);
-  const isEmpty = !master.quote && paragraphs.length === 0 && phrases.length === 0 && works.length === 0;
+  const isEmpty = tags.length === 0 && !master.quote && paragraphs.length === 0 && phrases.length === 0 && works.length === 0;
 
   return (
     <main>
@@ -52,6 +53,13 @@ export default async function MasterPage({ params }: PageProps<"/masters/[slug]"
               <p className="kicker">{master.group}</p>
               <h1 className="heading">{master.name}</h1>
               <p className="lede">{master.role}</p>
+              {tags.length > 0 ? (
+                <ul className="tag-cloud" aria-label="Виды услуг">
+                  {tags.map((tag) => (
+                    <li key={tag}>{tag}</li>
+                  ))}
+                </ul>
+              ) : null}
               <div className="actions">
                 <BookButton />
               </div>

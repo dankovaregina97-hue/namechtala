@@ -80,6 +80,12 @@ collections:
                   - { label: Имя, name: name, widget: string }
                   - { label: Должность, name: role, widget: string }
                   - { label: Фото, name: photo, widget: image, required: false, media_library: *image_library, hint: "Лучше квадратное или портретное фото" }
+                  - label: Виды услуг (теги)
+                    name: tags
+                    widget: list
+                    required: false
+                    hint: "Что делает мастер: «Маникюр», «Японский педикюр», «Бондирование»… Показываются облаком тегов"
+                    field: { label: Тег, name: tag, widget: string }
                   - { label: О мастере, name: bio, widget: text, required: false, hint: "Абзацы разделяйте пустой строкой" }
                   - { label: Личная цитата, name: quote, widget: text, required: false, hint: "Девиз или фраза мастера — крупным шрифтом на странице" }
                   - label: Коротко о мастере (фразы)

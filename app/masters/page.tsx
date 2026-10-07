@@ -43,6 +43,13 @@ export default function MastersPage() {
                         )}
                         <h3 className="master-name">{master.name}</h3>
                         <p className="master-role">{master.role}</p>
+                        {(master.tags ?? []).filter(Boolean).length > 0 ? (
+                          <ul className="tag-cloud tag-cloud-sm" aria-label="Виды услуг">
+                            {(master.tags ?? []).filter(Boolean).slice(0, 3).map((tag) => (
+                              <li key={tag}>{tag}</li>
+                            ))}
+                          </ul>
+                        ) : null}
                         <span className="master-more">Подробнее →</span>
                       </Link>
                     </Reveal>

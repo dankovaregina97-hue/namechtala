@@ -12,6 +12,7 @@ export type Master = {
   name: string;
   role: string;
   photo?: string;
+  tags?: string[];
   bio?: string;
   quote?: string;
   phrases?: string[];
