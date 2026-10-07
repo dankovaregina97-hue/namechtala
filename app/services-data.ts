@@ -54,10 +54,7 @@ export const serviceGroups: ServiceGroup[] = [
       { title: "Дизайн", duration: "10 мин", price: 100, from: true },
       { title: "Дизайн втирка/стемпинг", duration: "20 мин", price: 300 },
       { title: "Дизайн френч", duration: "от 20 мин", price: 500 },
-      { title: "Френч цветной", duration: "5 мин", price: 500 },
-      { title: "Лучи", duration: "5 мин", price: 200 },
-      { title: "Мокрый эффект", duration: "5 мин", price: 200 },
-      { title: "Парафинотерапия", duration: "15 мин", price: 300 }
+      { title: "Френч цветной", duration: "5 мин", price: 500 }
     ]
   },
   {
@@ -91,7 +88,9 @@ export const serviceGroups: ServiceGroup[] = [
       { title: "Снятие нарощенных ресниц", duration: "30 мин", price: 500 },
       { title: "Ламинирование ресниц", duration: "40 мин", price: 2200 },
       { title: "Окрашивание ресниц", duration: "10 мин", price: 400 },
-      { title: "Коричневые ресницы", duration: "5 мин", price: 200 }
+      { title: "Коричневые ресницы", duration: "5 мин", price: 200 },
+      { title: "Лучи", duration: "5 мин", price: 200 },
+      { title: "Мокрый эффект", duration: "5 мин", price: 200 }
     ]
   },
   {
