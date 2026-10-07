@@ -3,6 +3,7 @@ import aboutJson from "../content/about.json";
 import homeJson from "../content/home.json";
 import mastersJson from "../content/masters.json";
 import servicesJson from "../content/services.json";
+import worksJson from "../content/works.json";
 import settingsJson from "../content/settings.json";
 
 export type Service = { title: string; duration: string; price: number; from?: boolean };
@@ -50,6 +51,16 @@ export const about = aboutJson as {
   headingEm: string;
   lede: string;
   body: string;
+};
+
+export type Work = { image: string; master?: string; category?: string };
+
+export const works = worksJson as {
+  kicker: string;
+  headingPre: string;
+  headingEm: string;
+  lede: string;
+  items: Work[];
 };
 
 export const serviceGroups = servicesJson.groups as ServiceGroup[];

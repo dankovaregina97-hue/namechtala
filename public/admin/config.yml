@@ -15,6 +15,18 @@ locale: ru
 media_folder: public/uploads
 public_folder: /uploads
 
+# Все загружаемые фото автоматически сжимаются в WebP (до 1600 px по длинной стороне).
+x-image-library: &image_library
+  config:
+    max_file_size: 15728640
+    slugify_filename: true
+    transformations:
+      raster_image:
+        format: webp
+        quality: 82
+        width: 1600
+        height: 1600
+
 collections:
   - name: services
     label: Услуги и цены
@@ -67,7 +79,33 @@ collections:
                 fields:
                   - { label: Имя, name: name, widget: string }
                   - { label: Должность, name: role, widget: string }
-                  - { label: Фото, name: photo, widget: image, required: false, hint: "Квадратное фото, лучше от 600×600" }
+                  - { label: Фото, name: photo, widget: image, required: false, media_library: *image_library, hint: "Лучше квадратное или портретное фото" }
+
+  - name: works
+    label: Работы (фото)
+    files:
+      - name: works
+        label: Галерея работ
+        file: content/works.json
+        fields:
+          - { label: Надпись над заголовком, name: kicker, widget: string }
+          - { label: Заголовок (обычная часть), name: headingPre, widget: string }
+          - { label: Заголовок (выделенная часть), name: headingEm, widget: string }
+          - { label: Подзаголовок, name: lede, widget: string, required: false }
+          - label: Фотографии
+            name: items
+            widget: list
+            label_singular: фото
+            summary: "{{fields.category}} {{fields.master}}"
+            fields:
+              - { label: Фото, name: image, widget: image, media_library: *image_library }
+              - { label: Мастер, name: master, widget: string, required: false, hint: "Например: Милена" }
+              - label: Направление
+                name: category
+                widget: select
+                required: false
+                options: [Ногти, Педикюр, Ресницы, Брови, Эпиляция, Косметология]
+                hint: "По направлению фото группируются на странице"
 
   - name: pages
     label: Тексты страниц
