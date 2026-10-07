@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Reveal } from "../components/Reveal";
+import { about } from "../content";
 
 export const metadata: Metadata = { title: "О нас — namechtala" };
 
@@ -9,15 +10,18 @@ export default function AboutPage() {
       <section className="section section-first">
         <div className="wrap prose">
           <Reveal>
-            <p className="kicker">О нас</p>
+            <p className="kicker">{about.kicker}</p>
             <h1 className="heading">
-              Здоровье и красота — <em>в одном месте</em>
+              {about.headingPre}
+              <em>{about.headingEm}</em>
             </h1>
-            <p className="lede">
-              namechtala — это спокойное пространство заботы о себе. Мы верим, что красота начинается с хорошего
-              самочувствия, и строим работу вокруг этой идеи.
-            </p>
-            <p>Здесь будет рассказ о вас, вашем опыте и подходе — добавьте его в файле app/about/page.tsx.</p>
+            <p className="lede">{about.lede}</p>
+            {about.body
+              .split(/\n{2,}/)
+              .filter(Boolean)
+              .map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
           </Reveal>
         </div>
       </section>

@@ -1,0 +1,20 @@
+{
+  "name": "namechtala",
+  "tagline": "health + beauty",
+  "description": "namechtala — health + beauty: забота о себе без лишнего",
+  "contacts": {
+    "telegram": "",
+    "whatsapp": "",
+    "instagram": "",
+    "phone": "",
+    "email": "",
+    "address": "",
+    "yandexMaps": "https://yandex.ru/maps/org/namechtala/217429111843?si=acn6ufmj44xygb0qfekhuc4x9m",
+    "twoGis": "https://2gis.ru/kazan/geo/70000001047216181"
+  },
+  "booking": {
+    "scriptSrc": "https://dikidi.ru/assets/js/widget_record/widget2.min.js?v=1773811740",
+    "href": "https://dikidi.ru/#widget=219703",
+    "label": "Записаться"
+  }
+}

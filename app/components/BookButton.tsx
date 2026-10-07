@@ -1,4 +1,4 @@
-import { booking } from "../site-config";
+import { booking } from "../content";
 
 // Ссылка-триггер виджета DIKIDI: скрипт из layout перехватывает клик по
 // ссылкам вида dikidi.ru/#widget=... и открывает окно записи поверх сайта.

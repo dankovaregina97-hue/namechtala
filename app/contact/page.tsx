@@ -2,18 +2,22 @@ import type { Metadata } from "next";
 import { BookButton } from "../components/BookButton";
 import { ButtonLink } from "../components/ButtonLink";
 import { Reveal } from "../components/Reveal";
-import { siteConfig } from "../site-config";
+import { siteConfig } from "../content";
 
 export const metadata: Metadata = { title: "Контакты — namechtala" };
 
 export default function ContactPage() {
-  const { telegram, whatsapp, instagram, phone, email, address } = siteConfig.contacts;
+  const { telegram, whatsapp, instagram, phone, email, address, yandexMaps, twoGis } = siteConfig.contacts;
   const buttons = [
     { href: telegram, label: "Telegram" },
     { href: whatsapp, label: "WhatsApp" },
     { href: instagram, label: "Instagram" }
   ].filter((item) => item.href);
-  const hasAny = buttons.length > 0 || phone || email || address;
+  const maps = [
+    { href: yandexMaps, label: "Яндекс Карты" },
+    { href: twoGis, label: "2ГИС" }
+  ].filter((item) => item.href);
+  const hasAny = buttons.length > 0 || maps.length > 0 || phone || email || address;
 
   return (
     <main>
@@ -49,6 +53,18 @@ export default function ContactPage() {
                   ) : null}
                   {address ? <li>{address}</li> : null}
                 </ul>
+                {maps.length > 0 ? (
+                  <>
+                    <p className="kicker kicker-gap">Как нас найти</p>
+                    <div className="actions actions-tight">
+                      {maps.map((item) => (
+                        <ButtonLink key={item.label} href={item.href}>
+                          {item.label}
+                        </ButtonLink>
+                      ))}
+                    </div>
+                  </>
+                ) : null}
               </>
             ) : (
               <p className="lede">Остальные контакты скоро появятся здесь</p>

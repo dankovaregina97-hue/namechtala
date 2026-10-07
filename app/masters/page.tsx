@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { BookButton } from "../components/BookButton";
 import { Reveal } from "../components/Reveal";
-import { masterGroups } from "../masters-data";
+import { masterGroups } from "../content";
 
 export const metadata: Metadata = { title: "Мастера — namechtala" };
 

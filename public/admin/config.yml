@@ -1,0 +1,138 @@
+# Админка сайта (Sveltia CMS). Правки сохраняются коммитом в репозиторий,
+# после чего хостинг сам пересобирает сайт.
+backend:
+  name: github
+  repo: dankovaregina97-hue/namechtala
+  branch: main
+  commit_messages:
+    create: "Админка: добавлено «{{slug}}»"
+    update: "Админка: обновлено «{{collection}}»"
+    delete: "Админка: удалено «{{slug}}»"
+    uploadMedia: "Админка: загружен файл «{{path}}»"
+    deleteMedia: "Админка: удалён файл «{{path}}»"
+
+locale: ru
+media_folder: public/uploads
+public_folder: /uploads
+
+collections:
+  - name: services
+    label: Услуги и цены
+    files:
+      - name: services
+        label: Прайс-лист
+        file: content/services.json
+        fields:
+          - label: Категории
+            name: groups
+            widget: list
+            label_singular: категория
+            summary: "{{fields.title}}"
+            collapsed: true
+            fields:
+              - { label: Название категории, name: title, widget: string }
+              - label: Услуги
+                name: services
+                widget: list
+                label_singular: услуга
+                summary: "{{fields.title}} — {{fields.price}} ₽"
+                collapsed: true
+                fields:
+                  - { label: Название, name: title, widget: string }
+                  - { label: Длительность, name: duration, widget: string, hint: "Например: 1 ч 30 мин или от 40 мин" }
+                  - { label: Цена (₽), name: price, widget: number, value_type: int, min: 0 }
+                  - { label: Цена «от», name: from, widget: boolean, required: false, default: false, hint: "Включите, если цена указывается «от»" }
+
+  - name: masters
+    label: Мастера
+    files:
+      - name: masters
+        label: Команда
+        file: content/masters.json
+        fields:
+          - label: Направления
+            name: groups
+            widget: list
+            label_singular: направление
+            summary: "{{fields.title}}"
+            collapsed: true
+            fields:
+              - { label: Название направления, name: title, widget: string }
+              - label: Мастера
+                name: masters
+                widget: list
+                label_singular: мастер
+                summary: "{{fields.name}} — {{fields.role}}"
+                collapsed: true
+                fields:
+                  - { label: Имя, name: name, widget: string }
+                  - { label: Должность, name: role, widget: string }
+                  - { label: Фото, name: photo, widget: image, required: false, hint: "Квадратное фото, лучше от 600×600" }
+
+  - name: pages
+    label: Тексты страниц
+    files:
+      - name: home
+        label: Главная
+        file: content/home.json
+        fields:
+          - { label: Надпись над заголовком, name: kicker, widget: string }
+          - { label: Заголовок (обычная часть), name: titlePre, widget: string }
+          - { label: Заголовок (выделенная часть), name: titleEm, widget: string }
+          - { label: Подзаголовок, name: lede, widget: text }
+          - { label: Блок «Подход» — надпись, name: approachKicker, widget: string }
+          - { label: Блок «Подход» — заголовок (обычная часть), name: approachPre, widget: string }
+          - { label: Блок «Подход» — заголовок (выделенная часть), name: approachEm, widget: string }
+          - label: Принципы
+            name: principles
+            widget: list
+            label_singular: принцип
+            summary: "{{fields.title}}"
+            fields:
+              - { label: Заголовок, name: title, widget: string }
+              - { label: Текст, name: body, widget: text }
+          - { label: Блок «Услуги» — надпись, name: servicesKicker, widget: string }
+          - { label: Блок «Услуги» — заголовок (обычная часть), name: servicesPre, widget: string }
+          - { label: Блок «Услуги» — заголовок (выделенная часть), name: servicesEm, widget: string }
+          - { label: Нижний блок — заголовок (обычная часть), name: ctaPre, widget: string }
+          - { label: Нижний блок — заголовок (выделенная часть), name: ctaEm, widget: string }
+          - { label: Нижний блок — текст, name: ctaLede, widget: text }
+      - name: about
+        label: О нас
+        file: content/about.json
+        fields:
+          - { label: Надпись над заголовком, name: kicker, widget: string }
+          - { label: Заголовок (обычная часть), name: headingPre, widget: string }
+          - { label: Заголовок (выделенная часть), name: headingEm, widget: string }
+          - { label: Вступление, name: lede, widget: text }
+          - { label: Основной текст, name: body, widget: text, hint: "Абзацы разделяйте пустой строкой" }
+
+  - name: settings
+    label: Контакты и настройки
+    files:
+      - name: settings
+        label: Контакты, запись, название
+        file: content/settings.json
+        fields:
+          - { label: Название, name: name, widget: string }
+          - { label: Слоган, name: tagline, widget: string }
+          - { label: Описание для поисковиков, name: description, widget: text }
+          - label: Контакты
+            name: contacts
+            widget: object
+            fields:
+              - { label: Telegram (ссылка), name: telegram, widget: string, required: false, hint: "https://t.me/username" }
+              - { label: WhatsApp (ссылка), name: whatsapp, widget: string, required: false, hint: "https://wa.me/79990000000" }
+              - { label: Instagram (ссылка), name: instagram, widget: string, required: false }
+              - { label: Телефон, name: phone, widget: string, required: false, hint: "+7 999 000-00-00" }
+              - { label: Email, name: email, widget: string, required: false }
+              - { label: Адрес, name: address, widget: string, required: false }
+              - { label: Яндекс Карты (ссылка), name: yandexMaps, widget: string, required: false }
+              - { label: 2ГИС (ссылка), name: twoGis, widget: string, required: false }
+          - label: Онлайн-запись DIKIDI
+            name: booking
+            widget: object
+            fields:
+              - { label: Ссылка скрипта виджета, name: scriptSrc, widget: string, hint: "Из DIKIDI: Онлайн-запись → Виджет на сайт, шаг 1 (адрес в src)" }
+              - { label: Ссылка кнопки записи, name: href, widget: string, hint: "Из DIKIDI, шаг 3 (адрес в href)" }
+              - { label: Текст кнопки, name: label, widget: string }

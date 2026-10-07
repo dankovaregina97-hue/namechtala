@@ -1,38 +1,19 @@
 import { BookButton } from "./components/BookButton";
 import { ButtonLink } from "./components/ButtonLink";
 import { Reveal } from "./components/Reveal";
-import { formatPrice, groupMinPrice, serviceGroups, servicesCountLabel } from "./services-data";
-
-const principles = [
-  {
-    index: "01",
-    title: "Здоровье — основа красоты",
-    body: "Внешний вид отражает самочувствие, поэтому мы смотрим на человека целиком, а не на отдельную деталь"
-  },
-  {
-    index: "02",
-    title: "Без лишнего",
-    body: "Только то, что действительно нужно именно вам. Спокойный подход, понятные шаги и честные рекомендации"
-  },
-  {
-    index: "03",
-    title: "Внимание к деталям",
-    body: "Комфортная атмосфера, аккуратная работа и ощущение, что о вас позаботились"
-  }
-];
+import { formatPrice, groupMinPrice, home, serviceGroups, servicesCountLabel } from "./content";
 
 export default function HomePage() {
   return (
     <main>
       <section className="hero">
         <div className="wrap hero-inner">
-          <p className="kicker">health + beauty</p>
+          <p className="kicker">{home.kicker}</p>
           <h1 className="hero-title">
-            Забота о себе, <em>которая видна</em>
+            {home.titlePre}
+            <em>{home.titleEm}</em>
           </h1>
-          <p className="lede">
-            namechtala — пространство, где здоровье и красота работают вместе. Мягко, внимательно и без суеты
-          </p>
+          <p className="lede">{home.lede}</p>
           <div className="actions">
             <BookButton />
             <ButtonLink href="/services/">Смотреть услуги</ButtonLink>
@@ -43,16 +24,17 @@ export default function HomePage() {
       <section className="section">
         <div className="wrap">
           <Reveal>
-            <p className="kicker">Подход</p>
+            <p className="kicker">{home.approachKicker}</p>
             <h2 className="heading">
-              Красота, в которой <em>нет ничего случайного</em>
+              {home.approachPre}
+              <em>{home.approachEm}</em>
             </h2>
           </Reveal>
           <div className="principles">
-            {principles.map((item, index) => (
+            {home.principles.map((item, index) => (
               <Reveal delay={index * 90} key={item.title}>
                 <article className="principle">
-                  <span className="principle-index">{item.index}</span>
+                  <span className="principle-index">{String(index + 1).padStart(2, "0")}</span>
                   <h3>{item.title}</h3>
                   <p>{item.body}</p>
                 </article>
@@ -65,9 +47,10 @@ export default function HomePage() {
       <section className="section section-tint">
         <div className="wrap">
           <Reveal>
-            <p className="kicker">Услуги</p>
+            <p className="kicker">{home.servicesKicker}</p>
             <h2 className="heading">
-              Что мы <em>предлагаем</em>
+              {home.servicesPre}
+              <em>{home.servicesEm}</em>
             </h2>
           </Reveal>
           <ul className="service-list">
@@ -96,9 +79,10 @@ export default function HomePage() {
         <div className="wrap cta-panel">
           <Reveal>
             <h2 className="heading">
-              Давайте <em>познакомимся</em>
+              {home.ctaPre}
+              <em>{home.ctaEm}</em>
             </h2>
-            <p className="lede">Запишитесь онлайн — выберите услугу и удобное время, остальное мы подскажем</p>
+            <p className="lede">{home.ctaLede}</p>
             <div className="actions actions-center">
               <BookButton />
               <ButtonLink href="/contact/">Контакты</ButtonLink>

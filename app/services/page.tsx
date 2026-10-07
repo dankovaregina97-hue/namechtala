@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { BookButton } from "../components/BookButton";
 import { Reveal } from "../components/Reveal";
-import { formatPrice, serviceGroups } from "../services-data";
+import { formatPrice, serviceGroups } from "../content";
 
 export const metadata: Metadata = { title: "Услуги и цены — namechtala" };
 

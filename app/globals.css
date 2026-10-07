@@ -506,3 +506,11 @@ img {
 .service-group {
   scroll-margin-top: 90px;
 }
+
+.kicker-gap {
+  margin-top: 40px;
+}
+
+.actions-tight {
+  margin-top: 0;
+}
