@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { BookButton } from "../components/BookButton";
 import { Reveal } from "../components/Reveal";
 import { services } from "../site-config";
 
@@ -32,6 +33,9 @@ export default function ServicesPage() {
               </Reveal>
             ))}
           </ul>
+          <Reveal>
+            <BookButton />
+          </Reveal>
         </div>
       </section>
     </main>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { BookButton } from "../components/BookButton";
 import { ButtonLink } from "../components/ButtonLink";
 import { Reveal } from "../components/Reveal";
 import { siteConfig } from "../site-config";
@@ -23,11 +24,14 @@ export default function ContactPage() {
             <h1 className="heading">
               Свяжитесь <em>с нами</em>
             </h1>
+            <div className="actions">
+              <BookButton />
+            </div>
             {hasAny ? (
               <>
                 <div className="actions">
-                  {buttons.map((item, index) => (
-                    <ButtonLink key={item.label} href={item.href} solid={index === 0}>
+                  {buttons.map((item) => (
+                    <ButtonLink key={item.label} href={item.href}>
                       {item.label}
                     </ButtonLink>
                   ))}
@@ -47,7 +51,7 @@ export default function ContactPage() {
                 </ul>
               </>
             ) : (
-              <p className="lede">Контакты скоро появятся здесь</p>
+              <p className="lede">Остальные контакты скоро появятся здесь</p>
             )}
           </Reveal>
         </div>

@@ -1,3 +1,4 @@
+import { BookButton } from "./components/BookButton";
 import { ButtonLink } from "./components/ButtonLink";
 import { Reveal } from "./components/Reveal";
 import { services } from "./site-config";
@@ -33,9 +34,7 @@ export default function HomePage() {
             namechtala — пространство, где здоровье и красота работают вместе. Мягко, внимательно и без суеты
           </p>
           <div className="actions">
-            <ButtonLink solid href="/contact/">
-              Связаться
-            </ButtonLink>
+            <BookButton />
             <ButtonLink href="/services/">Смотреть услуги</ButtonLink>
           </div>
         </div>
@@ -96,10 +95,11 @@ export default function HomePage() {
             <h2 className="heading">
               Давайте <em>познакомимся</em>
             </h2>
-            <p className="lede">Напишите нам — подскажем, с чего начать, и подберём удобное время</p>
-            <ButtonLink solid href="/contact/">
-              Контакты
-            </ButtonLink>
+            <p className="lede">Запишитесь онлайн — выберите услугу и удобное время, остальное мы подскажем</p>
+            <div className="actions actions-center">
+              <BookButton />
+              <ButtonLink href="/contact/">Контакты</ButtonLink>
+            </div>
           </Reveal>
         </div>
       </section>

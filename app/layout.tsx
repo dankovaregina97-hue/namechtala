@@ -1,8 +1,9 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { Cormorant_Garamond, Jost } from "next/font/google";
 import { SiteFooter } from "./components/SiteFooter";
 import { SiteHeader } from "./components/SiteHeader";
-import { siteConfig } from "./site-config";
+import { booking, siteConfig } from "./site-config";
 import "./globals.css";
 
 const serif = Cormorant_Garamond({
@@ -36,6 +37,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <SiteHeader />
         {children}
         <SiteFooter />
+        <Script src={booking.scriptSrc} strategy="afterInteractive" />
       </body>
     </html>
   );

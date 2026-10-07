@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BookButton } from "./BookButton";
 import { navLinks } from "./nav";
 
 export function SiteHeader() {
@@ -16,6 +17,7 @@ export function SiteHeader() {
             </Link>
           ))}
         </nav>
+        <BookButton className="header-cta" />
       </div>
     </header>
   );

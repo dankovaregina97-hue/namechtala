@@ -368,3 +368,24 @@ img {
     justify-content: space-between;
   }
 }
+
+.actions-center {
+  justify-content: center;
+}
+
+.header-cta {
+  padding: 10px 22px;
+}
+
+@media (max-width: 560px) {
+  .site-header-row {
+    gap: 10px 12px;
+  }
+  .header-cta {
+    padding: 9px 16px;
+    font-size: 12px;
+  }
+  .site-nav {
+    order: 3;
+  }
+}
