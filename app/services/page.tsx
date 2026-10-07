@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { BookButton } from "../components/BookButton";
 import { Reveal } from "../components/Reveal";
-import { services } from "../site-config";
+import { formatPrice, serviceGroups } from "../services-data";
 
-export const metadata: Metadata = { title: "Услуги — namechtala" };
+export const metadata: Metadata = { title: "Услуги и цены — namechtala" };
 
 export default function ServicesPage() {
   return (
@@ -13,29 +13,43 @@ export default function ServicesPage() {
           <Reveal>
             <p className="kicker">Услуги</p>
             <h1 className="heading">
-              Что мы <em>предлагаем</em>
+              Услуги <em>и цены</em>
             </h1>
-            <p className="lede">Список услуг и стоимость уточняйте при записи</p>
+            <p className="lede">
+              Стоимость зависит от мастера и объёма работы — окончательную цену покажет форма записи
+            </p>
+            <div className="actions">
+              <BookButton />
+            </div>
+            <nav className="chips" aria-label="Категории услуг">
+              {serviceGroups.map((group, index) => (
+                <a href={`#group-${index}`} key={group.title}>
+                  {group.title}
+                </a>
+              ))}
+            </nav>
           </Reveal>
-          <ul className="service-list">
-            {services.map((service, index) => (
-              <Reveal as="li" delay={index * 70} key={service.title}>
-                <div className="service-row">
-                  <span className="service-index">0{index + 1}</span>
-                  <div>
-                    <div className="service-name">{service.title}</div>
-                    <div className="service-note">
-                      {[service.duration, service.note].filter(Boolean).join(" · ")}
-                    </div>
-                  </div>
-                  <span className="service-price">{service.price || "По записи"}</span>
-                </div>
+
+          {serviceGroups.map((group, index) => (
+            <div className="service-group" key={group.title} id={`group-${index}`}>
+              <Reveal>
+                <h2 className="master-group-title">{group.title}</h2>
               </Reveal>
-            ))}
-          </ul>
-          <Reveal>
-            <BookButton />
-          </Reveal>
+              <ul className="service-list service-list-flat">
+                {group.services.map((service) => (
+                  <li key={service.title}>
+                    <div className="service-row service-row-compact">
+                      <div>
+                        <div className="service-name service-name-sm">{service.title}</div>
+                        <div className="service-note">{service.duration}</div>
+                      </div>
+                      <span className="service-price">{formatPrice(service)}</span>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       </section>
     </main>

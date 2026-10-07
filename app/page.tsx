@@ -1,7 +1,7 @@
 import { BookButton } from "./components/BookButton";
 import { ButtonLink } from "./components/ButtonLink";
 import { Reveal } from "./components/Reveal";
-import { services } from "./site-config";
+import { formatPrice, groupMinPrice, serviceGroups, servicesCountLabel } from "./services-data";
 
 const principles = [
   {
@@ -71,20 +71,23 @@ export default function HomePage() {
             </h2>
           </Reveal>
           <ul className="service-list">
-            {services.map((service, index) => (
-              <Reveal as="li" delay={index * 70} key={service.title}>
+            {serviceGroups.map((group, index) => (
+              <Reveal as="li" delay={(index % 4) * 70} key={group.title}>
                 <div className="service-row">
-                  <span className="service-index">0{index + 1}</span>
+                  <span className="service-index">{String(index + 1).padStart(2, "0")}</span>
                   <div>
-                    <div className="service-name">{service.title}</div>
-                    <div className="service-note">{service.note}</div>
+                    <div className="service-name">{group.title}</div>
+                    <div className="service-note">{servicesCountLabel(group.services.length)}</div>
                   </div>
+                  <span className="service-price">
+                    {formatPrice({ price: groupMinPrice(group), from: true })}
+                  </span>
                 </div>
               </Reveal>
             ))}
           </ul>
           <Reveal delay={100}>
-            <ButtonLink href="/services/">Все услуги</ButtonLink>
+            <ButtonLink href="/services/">Прайс-лист</ButtonLink>
           </Reveal>
         </div>
       </section>

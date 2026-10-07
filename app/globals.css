@@ -451,3 +451,58 @@ img {
   font-size: 14px;
   color: var(--ink-soft);
 }
+
+/* ---------- services price list ---------- */
+.service-group {
+  margin-top: clamp(40px, 6vw, 72px);
+}
+
+.service-group .master-group-title {
+  margin-bottom: 0;
+  border-bottom: 0;
+  padding-bottom: 8px;
+}
+
+.service-list-flat {
+  margin: 0;
+}
+
+.service-row-compact {
+  grid-template-columns: 1fr auto;
+  padding: 18px 0;
+}
+
+.service-name-sm {
+  font-size: clamp(20px, 2.4vw, 25px);
+}
+
+@media (max-width: 560px) {
+  .service-row-compact .service-price {
+    grid-column: auto;
+  }
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.chips a {
+  padding: 8px 18px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 14px;
+  color: var(--ink-soft);
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.chips a:hover {
+  border-color: var(--brand);
+  color: var(--brand-deep);
+}
+
+.service-group {
+  scroll-margin-top: 90px;
+}
