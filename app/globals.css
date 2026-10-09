@@ -463,12 +463,12 @@ button {
 
 .hero-body {
   position: relative;
-  padding-top: 140px;
-  padding-bottom: clamp(48px, 7vw, 88px);
+  padding-top: calc(var(--header-h) + 12px);
+  padding-bottom: clamp(24px, 5vh, 72px);
 }
 
 .hero-kicker {
-  margin-bottom: clamp(20px, 3vw, 40px);
+  margin-bottom: clamp(10px, 2.6vh, 36px);
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.24em;
@@ -479,7 +479,7 @@ button {
 .hero-title {
   font-family: var(--font-display), serif;
   font-weight: 300;
-  font-size: clamp(50px, 10vw, 172px);
+  font-size: clamp(38px, min(9.6vw, 16vh), 172px);
   letter-spacing: -0.035em;
   line-height: 0.92;
 }
@@ -510,8 +510,8 @@ button {
   align-items: flex-end;
   justify-content: space-between;
   gap: 32px;
-  margin-top: clamp(36px, 6vw, 80px);
-  padding-top: 28px;
+  margin-top: clamp(16px, 4.5vh, 72px);
+  padding-top: clamp(14px, 3vh, 28px);
   border-top: 1px solid var(--line-light);
   opacity: 0;
   animation: fade 1.2s var(--ease) 1.2s forwards;
@@ -1671,5 +1671,15 @@ button {
     opacity: 1 !important;
     transform: none !important;
     clip-path: none !important;
+  }
+}
+
+/* низкие окна браузера: первый экран должен помещаться целиком */
+@media (max-height: 640px) and (min-width: 700px) {
+  .hero-lede {
+    font-size: 15px;
+  }
+  .hero-actions .btn {
+    padding: 14px 28px;
   }
 }
