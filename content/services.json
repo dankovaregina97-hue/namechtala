@@ -438,70 +438,10 @@
       ]
     },
     {
-      "title": "Косметология",
+      "title": "Массаж лица",
       "services": [
         {
-          "title": "Поверхностный пилинг лица",
-          "duration": "1 ч",
-          "price": 1500,
-          "from": false
-        },
-        {
-          "title": "Ультразвуковая чистка лица",
-          "duration": "1 ч",
-          "price": 2000,
-          "from": false
-        },
-        {
-          "title": "Комбинированная чистка лица",
-          "duration": "2 ч",
-          "price": 3000,
-          "from": false
-        },
-        {
           "title": "Массаж лица",
-          "duration": "1 ч",
-          "price": 3000,
-          "from": false
-        },
-        {
-          "title": "Биоревитализация зоны вокруг глаз",
-          "duration": "1 ч",
-          "price": 3000,
-          "from": true
-        },
-        {
-          "title": "Биоревитализация лица",
-          "duration": "1 ч",
-          "price": 5000,
-          "from": true
-        },
-        {
-          "title": "Биоревитализация шеи и декольте",
-          "duration": "1 ч",
-          "price": 5000,
-          "from": true
-        },
-        {
-          "title": "Биоревитализация зоны вокруг глаз, лицо полностью, шея и декольте",
-          "duration": "2 ч",
-          "price": 10000,
-          "from": true
-        },
-        {
-          "title": "Бланширование",
-          "duration": "1 ч",
-          "price": 5000,
-          "from": true
-        },
-        {
-          "title": "Липолитик",
-          "duration": "1 ч",
-          "price": 11000,
-          "from": true
-        },
-        {
-          "title": "Мезотерапия кожи головы",
           "duration": "1 ч",
           "price": 3000,
           "from": false

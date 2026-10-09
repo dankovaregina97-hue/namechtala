@@ -125,7 +125,7 @@ collections:
                 name: category
                 widget: select
                 required: false
-                options: [Ногти, Педикюр, Ресницы, Брови, Эпиляция, Косметология]
+                options: [Ногти, Педикюр, Ресницы, Брови, Эпиляция, Массаж лица]
                 hint: "По направлению фото группируются на странице"
 
   - name: pages
