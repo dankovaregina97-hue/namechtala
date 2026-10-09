@@ -580,11 +580,11 @@ button {
 
 /* ---------- секции ---------- */
 .section {
-  padding: clamp(88px, 12vw, 200px) 0;
+  padding: clamp(60px, 7vw, 108px) 0;
 }
 
 .section-tight {
-  padding: 0 0 clamp(88px, 11vw, 180px);
+  padding: 0 0 clamp(60px, 7vw, 108px);
 }
 
 .section-bone {
@@ -640,7 +640,7 @@ button {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 32px clamp(24px, 4vw, 72px);
-  margin-top: clamp(64px, 9vw, 140px);
+  margin-top: clamp(40px, 5vw, 72px);
 }
 
 .principles li {
@@ -650,7 +650,7 @@ button {
 
 .principle-num {
   display: block;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.22em;
@@ -826,26 +826,27 @@ button {
 
 /* ---------- запись ---------- */
 .cta {
-  padding-bottom: clamp(72px, 9vw, 140px);
+  padding-top: clamp(56px, 6vw, 88px);
+  padding-bottom: clamp(48px, 5vw, 72px);
 }
 
 .cta-grid {
   display: grid;
-  grid-template-columns: 1.6fr 1fr;
-  gap: 48px clamp(32px, 6vw, 112px);
+  grid-template-columns: 1.2fr 1fr;
+  gap: 32px clamp(32px, 6vw, 96px);
   align-items: end;
 }
 
 .cta-link {
   display: flex;
   align-items: baseline;
-  gap: 0.18em;
-  margin-top: 28px;
+  gap: 0.3em;
+  margin-top: 16px;
   font-family: var(--font-display), serif;
   font-weight: 300;
-  font-size: clamp(38px, 6.4vw, 104px);
-  letter-spacing: -0.02em;
-  line-height: 1.02;
+  font-size: clamp(30px, 4vw, 60px);
+  letter-spacing: -0.012em;
+  line-height: 1.05;
   transition: color 0.5s var(--ease);
 }
 
@@ -865,14 +866,14 @@ button {
 
 .cta-lede {
   max-width: 40ch;
-  margin-top: 28px;
+  margin-top: 16px;
   color: rgba(241, 236, 228, 0.7);
 }
 
 .cta-maps {
   display: flex;
-  gap: 28px;
-  margin-top: 28px;
+  gap: 24px;
+  margin-top: 20px;
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.18em;
@@ -894,22 +895,22 @@ button {
 .footer {
   background: var(--ink);
   color: var(--ivory);
-  padding: 0 0 36px;
+  padding: 0 0 24px;
 }
 
 .footer .wrap {
   border-top: 1px solid var(--line-light);
-  padding-top: clamp(48px, 6vw, 88px);
+  padding-top: clamp(32px, 3.6vw, 52px);
 }
 
 .footer-top {
   display: grid;
   grid-template-columns: 4fr 8fr;
-  gap: 48px;
+  gap: 28px 48px;
 }
 
 .footer-logo {
-  width: clamp(160px, 18vw, 260px);
+  width: clamp(120px, 11vw, 160px);
   height: auto;
   filter: brightness(0) invert(1);
   opacity: 0.92;
@@ -922,13 +923,13 @@ button {
 }
 
 .footer .label {
-  margin-bottom: 20px;
+  margin-bottom: 12px;
   color: var(--taupe-light);
 }
 
 .footer li {
-  padding: 4px 0;
-  font-size: 15px;
+  padding: 2px 0;
+  font-size: 14px;
   color: rgba(241, 236, 228, 0.82);
 }
 
@@ -945,8 +946,8 @@ button {
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 12px;
-  margin-top: clamp(56px, 8vw, 120px);
-  font-size: 12px;
+  margin-top: clamp(28px, 3.4vw, 48px);
+  font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: rgba(241, 236, 228, 0.5);
@@ -1011,9 +1012,9 @@ button {
 .social-contact .social-list a,
 .social-contact .social-list button {
   width: 100%;
-  padding: 18px 0;
+  padding: 13px 0;
   font-family: var(--font-display), serif;
-  font-size: clamp(21px, 1.9vw, 27px);
+  font-size: clamp(19px, 1.6vw, 23px);
   font-weight: 300;
   letter-spacing: -0.005em;
   text-align: left;
@@ -1026,8 +1027,8 @@ button {
 }
 
 .social-contact .social-list svg {
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
 }
 
 .social-note {
