@@ -19,10 +19,8 @@ const heroImage = "/uploads/milena-2.webp";
 
 export default function HomePage() {
   const strip = allWorks.slice(0, 10);
-  const featured = [...allMasters]
-    .filter((master) => masterImage(master))
-    .sort((a, b) => (b.works?.length ?? 0) - (a.works?.length ?? 0))
-    .slice(0, 4);
+  // на главной показываем мастеров только с их личным фото; пока фото нет, блок скрыт
+  const featured = allMasters.filter((master) => masterImage(master)).slice(0, 4);
   const { yandexMaps, twoGis } = settings.contacts;
 
   return (

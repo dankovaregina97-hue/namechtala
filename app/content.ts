@@ -126,9 +126,9 @@ export const allMasters: MasterWithMeta[] = (() => {
   );
 })();
 
-// Картинка мастера везде — его работа; личное фото используем только если работ ещё нет.
-export function masterImage(master: Pick<Master, "photo" | "works">): string | undefined {
-  return (master.works ?? []).filter(Boolean)[0] || master.photo || undefined;
+// Картинка мастера — только его личное фото. Работы мастера сюда не подставляются.
+export function masterImage(master: Pick<Master, "photo">): string | undefined {
+  return master.photo || undefined;
 }
 
 export type WorkItem = { image: string; master?: string; slug?: string; category?: string };

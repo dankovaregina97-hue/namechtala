@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { BookButton } from "../../components/BookButton";
 import { Photo } from "../../components/Photo";
 import { Reveal } from "../../components/Reveal";
-import { allMasters, masterImage } from "../../content";
+import { allMasters } from "../../content";
 
 export const dynamicParams = false;
 
@@ -35,7 +35,7 @@ export default async function MasterPage({ params }: PageProps<"/masters/[slug]"
   const works = (master.works ?? []).filter(Boolean);
   const paragraphs = (master.bio ?? "").split(/\n{2,}/).filter(Boolean);
   const next = allMasters[(index + 1) % allMasters.length] ?? master;
-  const plates = works.length > 0 ? works : master.photo ? [master.photo] : [];
+  const plates = master.photo ? [master.photo, ...works] : works;
 
   return (
     <main>
