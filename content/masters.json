@@ -15,7 +15,8 @@
             "/uploads/milena-2.webp",
             "/uploads/milena-3.webp",
             "/uploads/milena-4.webp"
-          ]
+          ],
+          "booking": "https://dikidi.ru/#widget=219864"
         },
         {
           "name": "Дарья",
@@ -33,7 +34,8 @@
             "Построю чёткий красивый квадрат",
             "Готова на эксперименты в дизайнах",
             "Тонкое и долгое покрытие"
-          ]
+          ],
+          "booking": "https://dikidi.ru/#widget=219862"
         },
         {
           "name": "Лия",
@@ -48,7 +50,8 @@
             "/uploads/liya-3.webp",
             "/uploads/liya-4.webp",
             "/uploads/liya-5.webp"
-          ]
+          ],
+          "booking": "https://dikidi.ru/#widget=219861"
         },
         {
           "name": "Динара",
@@ -97,7 +100,8 @@
           "photo": "",
           "tags": [
             "Ногтевой сервис"
-          ]
+          ],
+          "booking": "https://dikidi.ru/#widget=219863"
         }
       ]
     },
@@ -112,6 +116,14 @@
             "Наращивание ресниц"
           ],
           "booking": "https://dikidi.ru/#widget=219858"
+        },
+        {
+          "name": "Варя",
+          "role": "Мастер-бровист",
+          "tags": [
+            "Брови"
+          ],
+          "booking": "https://dikidi.ru/#widget=219865"
         }
       ]
     },
