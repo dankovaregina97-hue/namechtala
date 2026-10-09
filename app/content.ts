@@ -4,6 +4,7 @@ import homeJson from "../content/home.json";
 import mastersJson from "../content/masters.json";
 import servicesJson from "../content/services.json";
 import worksJson from "../content/works.json";
+import promosJson from "../content/promos.json";
 import settingsJson from "../content/settings.json";
 
 export type Service = { title: string; duration: string; price: number; from?: boolean };
@@ -148,3 +149,16 @@ export const allWorks: WorkItem[] = (() => {
   }
   return [...mixed, ...works.items.filter((item) => item.image)];
 })();
+
+export type Promo = {
+  title: string;
+  text?: string;
+  period?: string;
+  badge?: string;
+  image?: string;
+  archived?: boolean;
+};
+
+const allPromos = (promosJson.items ?? []) as unknown as Promo[];
+export const activePromos = allPromos.filter((promo) => promo.title && !promo.archived);
+export const archivedPromos = allPromos.filter((promo) => promo.title && promo.archived);

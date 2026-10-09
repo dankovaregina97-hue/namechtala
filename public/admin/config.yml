@@ -128,6 +128,27 @@ collections:
                 options: [Ногти, Педикюр, Ресницы, Брови, Эпиляция, Массаж лица]
                 hint: "По направлению фото группируются на странице"
 
+  - name: promos
+    label: Акции
+    files:
+      - name: promos
+        label: Акции (действующие и архив)
+        file: content/promos.json
+        fields:
+          - label: Акции
+            name: items
+            widget: list
+            label_singular: акция
+            summary: "{{fields.title}}{{fields.archived}}"
+            hint: "Когда акция закончилась — не удаляйте её, а включите «В архиве»: она уйдёт на страницу «Архив»"
+            fields:
+              - { label: Название, name: title, widget: string }
+              - { label: Метка (коротко), name: badge, widget: string, required: false, hint: "Например: −20%, подарок, 2 по цене 1" }
+              - { label: Срок, name: period, widget: string, required: false, hint: "Например: до 31 октября" }
+              - { label: Описание, name: text, widget: text, required: false, hint: "Абзацы разделяйте пустой строкой" }
+              - { label: Картинка, name: image, widget: image, required: false, media_library: *image_library }
+              - { label: В архиве (акция закончилась), name: archived, widget: boolean, required: false, default: false }
+
   - name: pages
     label: Тексты страниц
     files:
