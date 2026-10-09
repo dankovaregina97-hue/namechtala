@@ -15,19 +15,27 @@
 | Тексты страниц | «Главная», «О нас» |
 | Контакты и настройки | название, Telegram/WhatsApp/Instagram, телефон, адрес, Яндекс Карты, 2ГИС, код записи DIKIDI |
 
-## Как войти (один раз)
+## Как войти
 
-1. Войдите в GitHub под аккаунтом, у которого есть права записи в репозиторий.
-2. Откройте https://github.com/settings/personal-access-tokens/new
-3. Заполните:
-   - **Resource owner** — владелец репозитория (`dankovaregina97-hue`);
-   - **Repository access** → *Only select repositories* → `namechtala`;
-   - **Permissions → Repository permissions → Contents: Read and write**;
-   - срок действия — на ваше усмотрение (после окончания создайте новый токен).
-4. Нажмите **Generate token** и скопируйте токен (он показывается один раз).
-5. Откройте `/admin/` → **Sign In Using Access Token** → вставьте токен.
+Откройте `/admin/` и нажмите **«Sign In with GitHub»** — откроется окно «Вход в админку». Введите пароль, и всё.
+GitHub-аккаунт и токен девушке-администратору не нужны.
 
-Токен хранится только в вашем браузере. Никому его не передавайте: с ним можно менять сайт.
+### Настройка входа по паролю (один раз, владельцем сайта)
+
+1. Создайте токен GitHub (под аккаунтом с правом записи в репозиторий):
+   https://github.com/settings/personal-access-tokens/new
+   — Resource owner: владелец репозитория; Only select repositories → `namechtala`;
+   Repository permissions → **Contents: Read and write**. Скопируйте токен.
+2. В Vercel откройте проект → **Settings → Environment Variables** и добавьте две переменные
+   (для всех окружений — Production, Preview, Development):
+   - `CMS_GITHUB_TOKEN` — токен из шага 1;
+   - `ADMIN_PASSWORD` — пароль для входа в админку (длинный, 12+ символов).
+3. Нажмите **Deployments → Redeploy** (последний деплой), чтобы переменные подхватились.
+
+Если сменить `ADMIN_PASSWORD` в Vercel и сделать Redeploy, старый пароль перестанет работать.
+
+> Запасной вход: на странице админки есть **«Sign In Using Access Token»** — вход прямо по токену GitHub.
+> Он не требует настроек в Vercel.
 
 ## Акции
 
@@ -50,4 +58,4 @@
 
 ## Локальная разработка
 
-`npm install`, затем `npm run dev` — перед запуском скрипт копирует панель в `public/admin/`.
+`npm install`, затем `npm run dev` — перед запуском скрипт копирует панель в `public/cms/`.

@@ -1,6 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "export",
   trailingSlash: true,
   env: {
     // нужна, чтобы страница «Акции» одинаково отрисовывалась на сервере и в браузере до проверки реальной даты

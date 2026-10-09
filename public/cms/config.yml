@@ -4,6 +4,8 @@ backend:
   name: github
   repo: dankovaregina97-hue/namechtala
   branch: main
+  base_url: https://namechtala.vercel.app
+  auth_endpoint: api/auth
   commit_messages:
     create: "Админка: добавлено «{{slug}}»"
     update: "Админка: обновлено «{{collection}}»"
