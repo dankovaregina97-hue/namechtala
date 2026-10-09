@@ -4,7 +4,7 @@ import { BookButton } from "../components/BookButton";
 import { PageHead } from "../components/PageHead";
 import { Photo } from "../components/Photo";
 import { Reveal } from "../components/Reveal";
-import { allMasters, masterGroups, masterImage } from "../content";
+import { allMasters, booking, masterGroups, masterImage } from "../content";
 
 export const metadata: Metadata = { title: "Мастера — namechtala" };
 
@@ -32,7 +32,7 @@ export default function MastersPage() {
                   {masters.map((master, index) => {
                     const tags = (master.tags ?? []).filter(Boolean).slice(0, 3);
                     return (
-                      <li key={master.slug}>
+                      <li key={master.slug} className="master-item">
                         <Link className="master-card" href={`/masters/${master.slug}/`}>
                           <Photo
                             src={masterImage(master)}
@@ -45,6 +45,15 @@ export default function MastersPage() {
                           <span className="master-role">{master.role}</span>
                           {tags.length > 0 ? <span className="master-tags">{tags.join(" / ")}</span> : null}
                         </Link>
+                        <a
+                          className="card-book"
+                          href={master.booking || booking.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`Записаться к мастеру ${master.name}`}
+                        >
+                          Записаться
+                        </a>
                       </li>
                     );
                   })}

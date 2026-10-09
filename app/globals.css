@@ -1683,3 +1683,32 @@ button {
     padding: 14px 28px;
   }
 }
+
+/* кнопка записи под карточкой мастера */
+.master-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.master-item .master-card {
+  flex: 1;
+}
+
+.card-book {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 18px;
+  padding: 13px 16px;
+  border: 1px solid var(--ink);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: background 0.5s var(--ease), color 0.5s var(--ease);
+}
+
+.card-book:hover {
+  background: var(--ink);
+  color: var(--ivory);
+}
