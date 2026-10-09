@@ -150,15 +150,13 @@ export const allWorks: WorkItem[] = (() => {
   return [...mixed, ...works.items.filter((item) => item.image)];
 })();
 
+// Акция — это картинка (афиша). Название и срок необязательны.
+// until — последний день действия (YYYY-MM-DD): на следующий день акция сама попадает в архив.
 export type Promo = {
-  title: string;
-  text?: string;
-  period?: string;
-  badge?: string;
-  image?: string;
+  image: string;
+  title?: string;
+  until?: string;
   archived?: boolean;
 };
 
-const allPromos = (promosJson.items ?? []) as unknown as Promo[];
-export const activePromos = allPromos.filter((promo) => promo.title && !promo.archived);
-export const archivedPromos = allPromos.filter((promo) => promo.title && promo.archived);
+export const promos = ((promosJson.items ?? []) as unknown as Promo[]).filter((promo) => promo.image);

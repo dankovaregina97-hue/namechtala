@@ -1,19 +1,16 @@
 import type { Metadata } from "next";
 import { PageHead } from "../../components/PageHead";
-import { PromoList, PromoTabs } from "../../components/PromoViews";
-import { archivedPromos } from "../../content";
+import { PromosView } from "../../components/PromoViews";
 
 export const metadata: Metadata = { title: "Архив акций — namechtala" };
 
 export default function PromosArchivePage() {
   return (
     <main>
-      <PageHead label="Акции" title="Архив акций">
-        <PromoTabs current="archive" />
-      </PageHead>
+      <PageHead label="Акции" title="Архив акций" />
       <section className="section-tight">
         <div className="wrap">
-          <PromoList items={archivedPromos} archived />
+          <PromosView mode="archive" />
         </div>
       </section>
     </main>

@@ -1712,7 +1712,7 @@ button {
 .promo-tabs {
   display: flex;
   gap: 8px;
-  margin-top: 28px;
+  margin-bottom: clamp(32px, 4vw, 56px);
 }
 
 .promo-tabs a {
@@ -1753,73 +1753,65 @@ button {
   margin-top: 0;
 }
 
-.promo-list {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: clamp(40px, 5vw, 72px) clamp(24px, 4vw, 64px);
+/* афиши показываем целиком, без обрезки; у акций разные пропорции */
+.promo-grid {
+  columns: 2;
+  column-gap: clamp(16px, 2.4vw, 32px);
 }
 
-.promo {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  height: 100%;
-  padding-top: 20px;
-  border-top: 1px solid var(--ink);
+.promo-grid.promo-archived {
+  columns: 3;
 }
 
-.promo-meta {
+.promo-grid li {
+  break-inside: avoid;
+  margin-bottom: clamp(16px, 2.4vw, 32px);
+}
+
+.promo a {
+  display: block;
+}
+
+.promo figcaption {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  gap: 8px 16px;
-  margin-bottom: 14px;
+  justify-content: space-between;
+  gap: 4px 16px;
+  margin-top: 12px;
+}
+
+.promo-name {
+  font-family: var(--font-display), serif;
+  font-size: clamp(19px, 1.7vw, 24px);
+  font-weight: 300;
+  letter-spacing: -0.005em;
+  line-height: 1.2;
+  color: var(--head);
+}
+
+.promo-until {
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-}
-
-.promo-badge {
-  padding: 5px 12px;
-  background: var(--ink);
-  color: var(--ivory);
-}
-
-.promo-period {
   color: var(--taupe);
-}
-
-.promo-title {
-  font-family: var(--font-display), serif;
-  font-weight: 300;
-  font-size: clamp(26px, 2.8vw, 42px);
-  letter-spacing: -0.01em;
-  line-height: 1.08;
-  color: var(--head);
-}
-
-.promo-text {
-  max-width: 52ch;
-  margin-top: 14px;
-  color: var(--muted);
-}
-
-.promo-cta {
-  margin-top: 28px;
-}
-
-.promo-archived .promo-title {
-  color: var(--muted);
 }
 
 .promo-archived .photo-frame img {
   filter: grayscale(1);
-  opacity: 0.8;
+  opacity: 0.85;
+}
+
+.promo-archived .promo-name {
+  color: var(--muted);
 }
 
 @media (max-width: 900px) {
-  .promo-list {
-    grid-template-columns: 1fr;
+  .promo-grid,
+  .promo-grid.promo-archived {
+    columns: 1;
+  }
+  .promo-grid.promo-archived {
+    columns: 2;
   }
 }
