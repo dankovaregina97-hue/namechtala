@@ -6,10 +6,12 @@ type RevealProps = {
   children: ReactNode;
   className?: string;
   delay?: number;
-  as?: "div" | "span" | "li";
+  as?: "div" | "span" | "li" | "section";
+  // "up" — мягкое появление снизу, "clip" — шторка для фотографий
+  variant?: "up" | "clip";
 };
 
-export function Reveal({ children, className, delay = 0, as = "div" }: RevealProps) {
+export function Reveal({ children, className, delay = 0, as = "div", variant = "up" }: RevealProps) {
   const ref = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -17,14 +19,6 @@ export function Reveal({ children, className, delay = 0, as = "div" }: RevealPro
     const node = ref.current;
     if (!node) return;
 
-    // Anything already on screen at mount (above the fold, or just below it)
-    // should appear right away. The rootMargin below trims the bottom of the
-    // viewport so deeper content reveals a moment before it's fully in view
-    // while scrolling — but that same trim means content sitting at the fold
-    // on first load never crosses the threshold until an actual scroll event
-    // re-evaluates it, so it stays invisible until the user scrolls or
-    // reloads at a different scroll position. Bypass the observer for that
-    // case with a direct geometry check.
     const rect = node.getBoundingClientRect();
     if (rect.top < window.innerHeight && rect.bottom > 0) {
       setIsVisible(true);
@@ -40,7 +34,7 @@ export function Reveal({ children, className, delay = 0, as = "div" }: RevealPro
           }
         }
       },
-      { threshold: 0.2, rootMargin: "0px 0px -10% 0px" }
+      { threshold: 0.12, rootMargin: "0px 0px -6% 0px" }
     );
 
     observer.observe(node);
@@ -48,11 +42,12 @@ export function Reveal({ children, className, delay = 0, as = "div" }: RevealPro
   }, []);
 
   const Tag = as;
+  const base = variant === "clip" ? "reveal-clip" : "reveal";
 
   return (
     <Tag
-      className={`reveal${isVisible ? " reveal-visible" : ""}${className ? ` ${className}` : ""}`}
-      ref={ref as RefObject<HTMLDivElement & HTMLSpanElement & HTMLLIElement>}
+      className={`${base}${isVisible ? " is-visible" : ""}${className ? ` ${className}` : ""}`}
+      ref={ref as RefObject<HTMLDivElement & HTMLSpanElement & HTMLLIElement & HTMLElement>}
       style={{ transitionDelay: `${delay}ms` }}
     >
       {children}

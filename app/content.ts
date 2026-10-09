@@ -41,18 +41,15 @@ export const settings = settingsJson as {
 
 export const home = homeJson as {
   kicker: string;
-  titlePre: string;
-  titleEm: string;
+  titleLines: string[];
   lede: string;
-  approachKicker: string;
-  approachPre: string;
-  approachEm: string;
+  manifestoLabel: string;
+  manifesto: string;
   principles: { title: string; body: string }[];
-  servicesKicker: string;
-  servicesPre: string;
-  servicesEm: string;
-  ctaPre: string;
-  ctaEm: string;
+  servicesTitle: string;
+  worksTitle: string;
+  mastersTitle: string;
+  ctaTitle: string;
   ctaLede: string;
 };
 
@@ -127,4 +124,25 @@ export const allMasters: MasterWithMeta[] = (() => {
       return { ...master, slug: count === 1 ? base : `${base}-${count}`, group: group.title };
     })
   );
+})();
+
+export function masterImage(master: Pick<Master, "photo" | "works">): string | undefined {
+  return master.photo || (master.works ?? []).filter(Boolean)[0];
+}
+
+export type WorkItem = { image: string; master?: string; slug?: string; category?: string };
+
+// Все фото работ: сначала фото мастеров (по кругу, чтобы мастера чередовались), затем общие.
+export const allWorks: WorkItem[] = (() => {
+  const perMaster = allMasters.map((master) =>
+    (master.works ?? [])
+      .filter(Boolean)
+      .map((image) => ({ image, master: master.name, slug: master.slug, category: master.group }))
+  );
+  const mixed: WorkItem[] = [];
+  const longest = Math.max(0, ...perMaster.map((list) => list.length));
+  for (let i = 0; i < longest; i += 1) {
+    for (const list of perMaster) if (list[i]) mixed.push(list[i] as WorkItem);
+  }
+  return [...mixed, ...works.items.filter((item) => item.image)];
 })();

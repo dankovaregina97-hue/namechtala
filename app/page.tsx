@@ -1,92 +1,195 @@
-import { BookButton } from "./components/BookButton";
+import Link from "next/link";
+import { BookLink } from "./components/BookButton";
 import { ButtonLink } from "./components/ButtonLink";
+import { Photo } from "./components/Photo";
 import { Reveal } from "./components/Reveal";
-import { formatPrice, groupMinPrice, home, serviceGroups, servicesCountLabel } from "./content";
+import { SocialLinks } from "./components/SocialLinks";
+import {
+  allMasters,
+  allWorks,
+  formatPrice,
+  groupMinPrice,
+  home,
+  masterImage,
+  serviceGroups,
+  settings
+} from "./content";
+
+const heroImage = "/uploads/milena-2.webp";
 
 export default function HomePage() {
+  const strip = allWorks.slice(0, 10);
+  const featured = [...allMasters]
+    .filter((master) => masterImage(master))
+    .sort((a, b) => (b.works?.length ?? 0) - (a.works?.length ?? 0))
+    .slice(0, 4);
+  const { yandexMaps, twoGis } = settings.contacts;
+
   return (
     <main>
+      {/* ---------- первый экран ---------- */}
       <section className="hero">
-        <div className="wrap hero-inner">
-          <p className="kicker">{home.kicker}</p>
+        <div className="hero-bg" aria-hidden="true">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={heroImage} alt="" />
+        </div>
+        <div className="hero-veil" aria-hidden="true" />
+        <div className="wrap hero-body">
+          <p className="hero-kicker">{home.kicker}</p>
           <h1 className="hero-title">
-            {home.titlePre}
-            <em>{home.titleEm}</em>
+            {home.titleLines.map((line, index) => (
+              <span className="hero-line" key={line}>
+                <span style={{ animationDelay: `${300 + index * 140}ms` }}>{line}</span>
+              </span>
+            ))}
           </h1>
-          <p className="lede">{home.lede}</p>
-          <div className="actions">
-            <BookButton />
-            <ButtonLink href="/services/">Смотреть услуги</ButtonLink>
+          <div className="hero-foot">
+            <p className="hero-lede">{home.lede}</p>
+            <div className="hero-actions">
+              <BookLink className="btn btn-solid btn-light">
+                <span>Записаться</span>
+              </BookLink>
+              <ButtonLink variant="link" href="/services/" className="on-dark">
+                Услуги и цены
+              </ButtonLink>
+            </div>
           </div>
+        </div>
+        <div className="hero-scroll" aria-hidden="true">
+          <span />
         </div>
       </section>
 
-      <section className="section">
+      {/* ---------- подход ---------- */}
+      <section className="section manifesto">
         <div className="wrap">
-          <Reveal>
-            <p className="kicker">{home.approachKicker}</p>
-            <h2 className="heading">
-              {home.approachPre}
-              <em>{home.approachEm}</em>
-            </h2>
-          </Reveal>
-          <div className="principles">
+          <div className="manifesto-grid">
+            <Reveal className="manifesto-label">
+              <span className="label">01 — {home.manifestoLabel}</span>
+            </Reveal>
+            <Reveal className="manifesto-text" delay={80}>
+              <p>{home.manifesto}</p>
+            </Reveal>
+          </div>
+          <ol className="principles">
             {home.principles.map((item, index) => (
-              <Reveal delay={index * 90} key={item.title}>
-                <article className="principle">
-                  <span className="principle-index">{String(index + 1).padStart(2, "0")}</span>
-                  <h3>{item.title}</h3>
-                  <p>{item.body}</p>
-                </article>
+              <Reveal as="li" delay={index * 110} key={item.title}>
+                <span className="principle-num">{String(index + 1).padStart(2, "0")}</span>
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
               </Reveal>
             ))}
-          </div>
+          </ol>
         </div>
       </section>
 
-      <section className="section section-tint">
-        <div className="wrap">
-          <Reveal>
-            <p className="kicker">{home.servicesKicker}</p>
-            <h2 className="heading">
-              {home.servicesPre}
-              <em>{home.servicesEm}</em>
-            </h2>
+      {/* ---------- услуги ---------- */}
+      <section className="section section-bone">
+        <div className="wrap services-grid">
+          <Reveal className="services-aside">
+            <span className="label">02 — {home.servicesTitle}</span>
+            <h2 className="title">{home.servicesTitle}</h2>
+            <ButtonLink variant="link" href="/services/">
+              Весь прайс-лист
+            </ButtonLink>
           </Reveal>
-          <ul className="service-list">
+          <ul className="index-list">
             {serviceGroups.map((group, index) => (
-              <Reveal as="li" delay={(index % 4) * 70} key={group.title}>
-                <div className="service-row">
-                  <span className="service-index">{String(index + 1).padStart(2, "0")}</span>
-                  <div>
-                    <div className="service-name">{group.title}</div>
-                    <div className="service-note">{servicesCountLabel(group.services.length)}</div>
-                  </div>
-                  <span className="service-price">
-                    {formatPrice({ price: groupMinPrice(group), from: true })}
-                  </span>
-                </div>
+              <Reveal as="li" delay={index * 50} key={group.title}>
+                <Link href={`/services/#group-${index}`} className="index-row">
+                  <span className="index-num">{String(index + 1).padStart(2, "0")}</span>
+                  <span className="index-name">{group.title}</span>
+                  <span className="index-meta">{formatPrice({ price: groupMinPrice(group), from: true })}</span>
+                  <i aria-hidden="true">→</i>
+                </Link>
               </Reveal>
             ))}
           </ul>
-          <Reveal delay={100}>
-            <ButtonLink href="/services/">Прайс-лист</ButtonLink>
-          </Reveal>
         </div>
       </section>
 
-      <section className="section">
-        <div className="wrap cta-panel">
-          <Reveal>
-            <h2 className="heading">
-              {home.ctaPre}
-              <em>{home.ctaEm}</em>
-            </h2>
-            <p className="lede">{home.ctaLede}</p>
-            <div className="actions actions-center">
-              <BookButton />
-              <ButtonLink href="/contact/">Контакты</ButtonLink>
+      {/* ---------- работы ---------- */}
+      {strip.length > 0 ? (
+        <section className="section works-section">
+          <div className="wrap works-head">
+            <Reveal>
+              <span className="label">03 — {home.worksTitle}</span>
+              <h2 className="title">{home.worksTitle}</h2>
+            </Reveal>
+            <Reveal delay={80}>
+              <ButtonLink variant="link" href="/works/">
+                Вся галерея
+              </ButtonLink>
+            </Reveal>
+          </div>
+          <div className="rail" tabIndex={0} aria-label="Фотографии работ">
+            {strip.map((work, index) => (
+              <figure className="rail-item" key={`${work.image}-${index}`}>
+                <Photo src={work.image} alt={work.master ? `Работа мастера ${work.master}` : "Работа"} ratio="3 / 4" delay={(index % 4) * 70} />
+                {work.master ? <figcaption>{work.master}</figcaption> : null}
+              </figure>
+            ))}
+          </div>
+        </section>
+      ) : null}
+
+      {/* ---------- мастера ---------- */}
+      {featured.length > 0 ? (
+        <section className="section">
+          <div className="wrap">
+            <div className="works-head">
+              <Reveal>
+                <span className="label">04 — {home.mastersTitle}</span>
+                <h2 className="title">{home.mastersTitle}</h2>
+              </Reveal>
+              <Reveal delay={80}>
+                <ButtonLink variant="link" href="/masters/">
+                  Вся команда
+                </ButtonLink>
+              </Reveal>
             </div>
+            <ul className="portrait-grid">
+              {featured.map((master, index) => (
+                <li key={master.slug} style={{ marginTop: index % 2 ? "clamp(24px, 5vw, 72px)" : 0 }}>
+                  <Link href={`/masters/${master.slug}/`} className="portrait">
+                    <Photo src={masterImage(master)} alt={master.name} ratio="3 / 4" delay={index * 80} />
+                    <span className="portrait-name">{master.name}</span>
+                    <span className="portrait-role">{master.role}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      ) : null}
+
+      {/* ---------- запись ---------- */}
+      <section className="section section-dark cta">
+        <div className="wrap cta-grid">
+          <Reveal>
+            <span className="label">05 — Запись</span>
+            <BookLink className="cta-link">
+              <span>{home.ctaTitle}</span>
+              <i aria-hidden="true">→</i>
+            </BookLink>
+            <p className="cta-lede">{home.ctaLede}</p>
+          </Reveal>
+          <Reveal delay={120} className="cta-side">
+            <SocialLinks variant="contact" />
+            {yandexMaps || twoGis ? (
+              <p className="cta-maps">
+                {yandexMaps ? (
+                  <a href={yandexMaps} target="_blank" rel="noopener noreferrer">
+                    Яндекс Карты
+                  </a>
+                ) : null}
+                {twoGis ? (
+                  <a href={twoGis} target="_blank" rel="noopener noreferrer">
+                    2ГИС
+                  </a>
+                ) : null}
+              </p>
+            ) : null}
           </Reveal>
         </div>
       </section>

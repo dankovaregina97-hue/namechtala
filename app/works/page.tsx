@@ -1,60 +1,42 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { BookButton } from "../components/BookButton";
-import { Reveal } from "../components/Reveal";
-import { allMasters, works } from "../content";
+import { PageHead } from "../components/PageHead";
+import { Photo } from "../components/Photo";
+import { allWorks, works } from "../content";
 
 export const metadata: Metadata = { title: "Работы — namechtala" };
 
 export default function WorksPage() {
-  const fromMasters = allMasters.flatMap((master) =>
-    (master.works ?? []).filter(Boolean).map((image) => ({ image, master: master.name, category: master.group }))
-  );
-  const items = [...fromMasters, ...works.items];
-  const groups = new Map<string, typeof items>();
-  for (const item of items) {
-    const key = item.category?.trim() || "";
-    groups.set(key, [...(groups.get(key) ?? []), item]);
-  }
-
   return (
     <main>
-      <section className="section section-first">
-        <div className="wrap">
-          <Reveal>
-            <p className="kicker">{works.kicker}</p>
-            <h1 className="heading">
-              {works.headingPre}
-              <em>{works.headingEm}</em>
-            </h1>
-            {works.lede ? <p className="lede">{works.lede}</p> : null}
-            <div className="actions">
-              <BookButton />
-            </div>
-          </Reveal>
+      <PageHead label={works.kicker} title={`${works.headingPre}${works.headingEm}`}>
+        {works.lede ? <p className="page-lede">{works.lede}</p> : null}
+        <BookButton />
+      </PageHead>
 
-          {items.length === 0 ? (
-            <p className="lede">Фотографии скоро появятся здесь</p>
+      <section className="section-tight">
+        <div className="wrap">
+          {allWorks.length === 0 ? (
+            <p className="page-lede">Фотографии скоро появятся здесь</p>
           ) : (
-            [...groups.entries()].map(([category, items]) => (
-              <div className="master-group" key={category || "all"}>
-                {category ? <h2 className="master-group-title">{category}</h2> : null}
-                <ul className="works-grid">
-                  {items.map((item, index) => (
-                    <li key={`${item.image}-${index}`}>
-                      <a className="work-card" href={item.image} target="_blank" rel="noopener noreferrer">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src={item.image}
-                          alt={item.master ? `Работа мастера ${item.master}` : "Работа мастера namechtala"}
-                          loading="lazy"
-                        />
-                        {item.master ? <span className="work-master">{item.master}</span> : null}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))
+            <ul className="masonry">
+              {allWorks.map((item, index) => (
+                <li key={`${item.image}-${index}`}>
+                  <figure className="work">
+                    <a href={item.image} target="_blank" rel="noopener noreferrer">
+                      <Photo src={item.image} alt={item.master ? `Работа мастера ${item.master}` : "Работа"} delay={(index % 3) * 70} />
+                    </a>
+                    {item.master ? (
+                      <figcaption>
+                        {item.slug ? <Link href={`/masters/${item.slug}/`}>{item.master}</Link> : item.master}
+                        {item.category ? <small>{item.category}</small> : null}
+                      </figcaption>
+                    ) : null}
+                  </figure>
+                </li>
+              ))}
+            </ul>
           )}
         </div>
       </section>

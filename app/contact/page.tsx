@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { BookButton } from "../components/BookButton";
-import { ButtonLink } from "../components/ButtonLink";
+import { PageHead } from "../components/PageHead";
 import { Reveal } from "../components/Reveal";
 import { SocialLinks } from "../components/SocialLinks";
 import { siteConfig } from "../content";
@@ -9,66 +9,45 @@ export const metadata: Metadata = { title: "Контакты — namechtala" };
 
 export default function ContactPage() {
   const { instagram, phone, email, address, yandexMaps, twoGis } = siteConfig.contacts;
-  const buttons = [
-    { href: instagram, label: "Instagram" }
-  ].filter((item) => item.href);
-  const maps = [
+  const links = [
+    { href: instagram, label: "Instagram" },
     { href: yandexMaps, label: "Яндекс Карты" },
     { href: twoGis, label: "2ГИС" }
   ].filter((item) => item.href);
-  const hasAny = buttons.length > 0 || maps.length > 0 || phone || email || address;
 
   return (
     <main>
-      <section className="section section-first">
-        <div className="wrap prose">
+      <PageHead label="Контакты" title="Связаться с нами">
+        <BookButton />
+      </PageHead>
+      <section className="section-tight">
+        <div className="wrap contact-grid">
           <Reveal>
-            <p className="kicker">Контакты</p>
-            <h1 className="heading">
-              Свяжитесь <em>с нами</em>
-            </h1>
-            <div className="actions">
-              <BookButton />
-            </div>
+            <h2 className="label">Написать</h2>
             <SocialLinks variant="contact" />
-            {hasAny ? (
-              <>
-                <div className="actions">
-                  {buttons.map((item) => (
-                    <ButtonLink key={item.label} href={item.href}>
-                      {item.label}
-                    </ButtonLink>
-                  ))}
-                </div>
-                <ul className="contact-list">
-                  {phone ? (
-                    <li>
-                      <a href={`tel:${phone.replace(/[^+\d]/g, "")}`}>{phone}</a>
-                    </li>
-                  ) : null}
-                  {email ? (
-                    <li>
-                      <a href={`mailto:${email}`}>{email}</a>
-                    </li>
-                  ) : null}
-                  {address ? <li>{address}</li> : null}
-                </ul>
-                {maps.length > 0 ? (
-                  <>
-                    <p className="kicker kicker-gap">Как нас найти</p>
-                    <div className="actions actions-tight">
-                      {maps.map((item) => (
-                        <ButtonLink key={item.label} href={item.href}>
-                          {item.label}
-                        </ButtonLink>
-                      ))}
-                    </div>
-                  </>
-                ) : null}
-              </>
-            ) : (
-              <p className="lede">Остальные контакты скоро появятся здесь</p>
-            )}
+          </Reveal>
+          <Reveal delay={80}>
+            <h2 className="label">Как нас найти</h2>
+            <ul className="contact-list">
+              {address ? <li>{address}</li> : null}
+              {phone ? (
+                <li>
+                  <a href={`tel:${phone.replace(/[^+\d]/g, "")}`}>{phone}</a>
+                </li>
+              ) : null}
+              {email ? (
+                <li>
+                  <a href={`mailto:${email}`}>{email}</a>
+                </li>
+              ) : null}
+              {links.map((item) => (
+                <li key={item.label}>
+                  <a href={item.href} target="_blank" rel="noopener noreferrer">
+                    {item.label} <i aria-hidden="true">↗</i>
+                  </a>
+                </li>
+              ))}
+            </ul>
           </Reveal>
         </div>
       </section>

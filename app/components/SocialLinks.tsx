@@ -9,7 +9,6 @@ type Props = { variant?: "footer" | "contact" };
 export function SocialLinks({ variant = "footer" }: Props) {
   const { telegram, whatsapp, max, maxPhone } = settings.contacts;
   const [copied, setCopied] = useState(false);
-  const cls = `social social-${variant}`;
 
   async function copyMax() {
     try {
@@ -29,7 +28,7 @@ export function SocialLinks({ variant = "footer" }: Props) {
   if (items.length === 0) return null;
 
   return (
-    <div className={cls}>
+    <div className={`social social-${variant}`}>
       <ul className="social-list">
         {items.map((item) => (
           <li key={item.key}>
@@ -39,7 +38,12 @@ export function SocialLinks({ variant = "footer" }: Props) {
                 {variant === "contact" ? <span>{item.label}</span> : null}
               </a>
             ) : (
-              <button type="button" onClick={item.onClick} aria-label={`${item.label}: скопировать номер`} title={`${item.label}: скопировать номер ${maxPhone}`}>
+              <button
+                type="button"
+                onClick={item.onClick}
+                aria-label={`${item.label}: скопировать номер`}
+                title={`${item.label}: скопировать номер ${maxPhone}`}
+              >
                 {item.icon}
                 {variant === "contact" ? <span>{item.label}</span> : null}
               </button>

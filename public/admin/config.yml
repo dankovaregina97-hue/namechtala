@@ -134,13 +134,15 @@ collections:
         label: Главная
         file: content/home.json
         fields:
-          - { label: Надпись над заголовком, name: kicker, widget: string }
-          - { label: Заголовок (обычная часть), name: titlePre, widget: string }
-          - { label: Заголовок (выделенная часть), name: titleEm, widget: string }
-          - { label: Подзаголовок, name: lede, widget: text }
-          - { label: Блок «Подход» — надпись, name: approachKicker, widget: string }
-          - { label: Блок «Подход» — заголовок (обычная часть), name: approachPre, widget: string }
-          - { label: Блок «Подход» — заголовок (выделенная часть), name: approachEm, widget: string }
+          - { label: Надпись на первом экране, name: kicker, widget: string }
+          - label: Заголовок (по строкам)
+            name: titleLines
+            widget: list
+            hint: "Каждая строка — отдельная строка заголовка, лучше 2–3 коротких"
+            field: { label: Строка, name: line, widget: string }
+          - { label: Подзаголовок, name: lede, widget: string }
+          - { label: Блок «Подход» — надпись, name: manifestoLabel, widget: string }
+          - { label: Блок «Подход» — главная мысль, name: manifesto, widget: text }
           - label: Принципы
             name: principles
             widget: list
@@ -149,12 +151,11 @@ collections:
             fields:
               - { label: Заголовок, name: title, widget: string }
               - { label: Текст, name: body, widget: text }
-          - { label: Блок «Услуги» — надпись, name: servicesKicker, widget: string }
-          - { label: Блок «Услуги» — заголовок (обычная часть), name: servicesPre, widget: string }
-          - { label: Блок «Услуги» — заголовок (выделенная часть), name: servicesEm, widget: string }
-          - { label: Нижний блок — заголовок (обычная часть), name: ctaPre, widget: string }
-          - { label: Нижний блок — заголовок (выделенная часть), name: ctaEm, widget: string }
-          - { label: Нижний блок — текст, name: ctaLede, widget: text }
+          - { label: Заголовок блока «Услуги», name: servicesTitle, widget: string }
+          - { label: Заголовок блока «Работы», name: worksTitle, widget: string }
+          - { label: Заголовок блока «Мастера», name: mastersTitle, widget: string }
+          - { label: Блок записи — крупная надпись, name: ctaTitle, widget: string }
+          - { label: Блок записи — текст, name: ctaLede, widget: string }
       - name: about
         label: О нас
         file: content/about.json
