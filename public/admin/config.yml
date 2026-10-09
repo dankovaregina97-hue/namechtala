@@ -80,6 +80,7 @@ collections:
                   - { label: Имя, name: name, widget: string }
                   - { label: Должность, name: role, widget: string }
                   - { label: Фото, name: photo, widget: image, required: false, media_library: *image_library, hint: "Лучше квадратное или портретное фото" }
+                  - { label: Ссылка на запись к мастеру (DIKIDI), name: booking, widget: string, required: false, hint: "DIKIDI → Онлайн-запись → Виджет на сайт → Запись к сотруднику, шаг 3: адрес из href, вида https://dikidi.ru/#widget=219704" }
                   - label: Виды услуг (теги)
                     name: tags
                     widget: list

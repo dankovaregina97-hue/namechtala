@@ -93,7 +93,10 @@ export default async function MasterPage({ params }: PageProps<"/masters/[slug]"
             ) : null}
 
             <div className="profile-cta">
-              <BookButton />
+              <BookButton
+                href={master.booking}
+                label={master.booking ? `Записаться к мастеру · ${master.name}` : undefined}
+              />
             </div>
           </aside>
 
