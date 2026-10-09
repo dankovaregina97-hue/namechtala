@@ -97,11 +97,15 @@
         {
           "name": "Данил",
           "role": "Мастер ногтевого сервиса",
-          "photo": "",
+          "photo": "/uploads/danil-photo.webp",
           "tags": [
             "Ногтевой сервис"
           ],
-          "booking": "https://dikidi.ru/#widget=219863"
+          "booking": "https://dikidi.ru/#widget=219863",
+          "works": [
+            "/uploads/danil-1.webp",
+            "/uploads/danil-2.webp"
+          ]
         }
       ]
     },

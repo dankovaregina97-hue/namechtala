@@ -19,7 +19,7 @@ const heroImage = "/uploads/milena-2.webp";
 
 export default function HomePage() {
   const strip = allWorks.slice(0, 10);
-  // на главной показываем мастеров только с их личным фото; пока фото нет, блок скрыт
+  // на главной показываем мастеров только с их личным фото; пока фото меньше трёх, блок скрыт
   const featured = allMasters.filter((master) => masterImage(master)).slice(0, 4);
   const { yandexMaps, twoGis } = settings.contacts;
 
@@ -132,7 +132,7 @@ export default function HomePage() {
       ) : null}
 
       {/* ---------- мастера ---------- */}
-      {featured.length > 0 ? (
+      {featured.length >= 3 ? (
         <section className="section">
           <div className="wrap">
             <div className="works-head">

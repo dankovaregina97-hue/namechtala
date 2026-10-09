@@ -1701,3 +1701,9 @@ button {
   background: var(--ink);
   color: var(--ivory);
 }
+
+/* портреты мастеров: кадрируем так, чтобы лицо оставалось в кадре */
+.master-card .photo-frame img,
+.portrait .photo-frame img {
+  object-position: 50% 18%;
+}
