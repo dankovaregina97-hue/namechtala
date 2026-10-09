@@ -35,7 +35,7 @@ export default async function MasterPage({ params }: PageProps<"/masters/[slug]"
   const works = (master.works ?? []).filter(Boolean);
   const paragraphs = (master.bio ?? "").split(/\n{2,}/).filter(Boolean);
   const next = allMasters[(index + 1) % allMasters.length] ?? master;
-  const plates = master.photo ? [master.photo, ...works] : works;
+  const plates = works.length > 0 ? works : master.photo ? [master.photo] : [];
 
   return (
     <main>
