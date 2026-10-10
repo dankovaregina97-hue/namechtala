@@ -1,6 +1,7 @@
 // Типизированный доступ к контенту из папки content/ (его правит админка /admin).
 import aboutJson from "../content/about.json";
 import homeJson from "../content/home.json";
+import loyaltyJson from "../content/loyalty.json";
 import mastersJson from "../content/masters.json";
 import servicesJson from "../content/services.json";
 import worksJson from "../content/works.json";
@@ -35,6 +36,7 @@ export const settings = settingsJson as {
     address: string;
     max: string;
     maxPhone: string;
+    yandexRating: string;
     yandexMaps: string;
     twoGis: string;
   };
@@ -160,3 +162,12 @@ export type Promo = {
 };
 
 export const promos = ((promosJson.items ?? []) as unknown as Promo[]).filter((promo) => promo.image);
+
+export const loyalty = loyaltyJson as {
+  label: string;
+  title: string;
+  cashbackTitle: string;
+  tiers: { percent: string; condition: string }[];
+  perks: { title: string; value: string; text: string }[];
+  rules: string[];
+};

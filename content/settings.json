@@ -12,7 +12,8 @@
     "yandexMaps": "https://yandex.ru/maps/org/namechtala/217429111843?si=acn6ufmj44xygb0qfekhuc4x9m",
     "twoGis": "https://2gis.ru/kazan/geo/70000001047216181",
     "max": "",
-    "maxPhone": "+79934193987"
+    "maxPhone": "+79934193987",
+    "yandexRating": "217429111843"
   },
   "booking": {
     "scriptSrc": "https://dikidi.ru/assets/js/widget_record/widget2.min.js?v=1773811740",

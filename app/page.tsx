@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { BookLink } from "./components/BookButton";
 import { ButtonLink } from "./components/ButtonLink";
+import { LoyaltyBlock } from "./components/LoyaltyBlock";
 import { Photo } from "./components/Photo";
 import { Reveal } from "./components/Reveal";
 import { SocialLinks } from "./components/SocialLinks";
@@ -10,6 +11,7 @@ import {
   formatPrice,
   groupMinPrice,
   home,
+  loyalty,
   masterImage,
   serviceGroups,
   settings
@@ -22,6 +24,8 @@ export default function HomePage() {
   // на главной показываем мастеров только с их личным фото; пока фото меньше трёх, блок скрыт
   const featured = allMasters.filter((master) => masterImage(master)).slice(0, 4);
   const { yandexMaps, twoGis } = settings.contacts;
+  let sectionNumber = 0;
+  const nextNumber = () => String(++sectionNumber).padStart(2, "0");
 
   return (
     <main>
@@ -63,7 +67,7 @@ export default function HomePage() {
         <div className="wrap">
           <div className="manifesto-grid">
             <Reveal className="manifesto-label">
-              <span className="label">01 — {home.manifestoLabel}</span>
+              <span className="label">{nextNumber()} — {home.manifestoLabel}</span>
             </Reveal>
             <Reveal className="manifesto-text" delay={80}>
               <p>{home.manifesto}</p>
@@ -85,7 +89,7 @@ export default function HomePage() {
       <section className="section section-bone">
         <div className="wrap services-grid">
           <Reveal className="services-aside">
-            <span className="label">02 — {home.servicesTitle}</span>
+            <span className="label">{nextNumber()} — {home.servicesTitle}</span>
             <h2 className="title">{home.servicesTitle}</h2>
             <ButtonLink variant="link" href="/services/">
               Весь прайс-лист
@@ -111,7 +115,7 @@ export default function HomePage() {
         <section className="section works-section">
           <div className="wrap works-head">
             <Reveal>
-              <span className="label">03 — {home.worksTitle}</span>
+              <span className="label">{nextNumber()} — {home.worksTitle}</span>
               <h2 className="title">{home.worksTitle}</h2>
             </Reveal>
             <Reveal delay={80}>
@@ -137,7 +141,7 @@ export default function HomePage() {
           <div className="wrap">
             <div className="works-head">
               <Reveal>
-                <span className="label">04 — {home.mastersTitle}</span>
+                <span className="label">{nextNumber()} — {home.mastersTitle}</span>
                 <h2 className="title">{home.mastersTitle}</h2>
               </Reveal>
               <Reveal delay={80}>
@@ -161,11 +165,25 @@ export default function HomePage() {
         </section>
       ) : null}
 
+      {/* ---------- система лояльности ---------- */}
+      <section className="section section-bone">
+        <div className="wrap">
+          <Reveal className="loyalty-head">
+            <span className="label">{nextNumber()} — {loyalty.label}</span>
+            <h2 className="title">{loyalty.title}</h2>
+            <ButtonLink variant="link" href="/loyalty/">
+              Все условия
+            </ButtonLink>
+          </Reveal>
+          <LoyaltyBlock />
+        </div>
+      </section>
+
       {/* ---------- запись ---------- */}
       <section className="section section-dark cta">
         <div className="wrap cta-grid">
           <Reveal>
-            <span className="label">05 — Запись</span>
+            <span className="label">{nextNumber()} — Запись</span>
             <BookLink className="cta-link">
               <span>{home.ctaTitle}</span>
               <i aria-hidden="true">→</i>

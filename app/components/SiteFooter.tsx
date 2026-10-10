@@ -2,6 +2,7 @@ import Link from "next/link";
 import { siteConfig } from "../content";
 import { navLinks } from "./nav";
 import { SocialLinks } from "./SocialLinks";
+import { YandexRating } from "./YandexRating";
 
 export function SiteFooter() {
   const { yandexMaps, twoGis, phone, email, address } = siteConfig.contacts;
@@ -25,6 +26,9 @@ export function SiteFooter() {
                     <Link href={link.href}>{link.label}</Link>
                   </li>
                 ))}
+                <li>
+                  <Link href="/loyalty/">Система лояльности</Link>
+                </li>
               </ul>
             </div>
             <div>
@@ -49,6 +53,7 @@ export function SiteFooter() {
                   </li>
                 ) : null}
               </ul>
+              <YandexRating className="yandex-rating-footer" />
             </div>
             <div>
               <h3 className="label">Написать</h3>

@@ -3,6 +3,7 @@ import { BookButton } from "../components/BookButton";
 import { PageHead } from "../components/PageHead";
 import { Reveal } from "../components/Reveal";
 import { SocialLinks } from "../components/SocialLinks";
+import { YandexRating } from "../components/YandexRating";
 import { siteConfig } from "../content";
 
 export const metadata: Metadata = { title: "Контакты — namechtala" };
@@ -48,6 +49,7 @@ export default function ContactPage() {
                 </li>
               ))}
             </ul>
+            <YandexRating className="yandex-rating-contact" />
           </Reveal>
         </div>
       </section>

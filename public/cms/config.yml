@@ -149,6 +149,40 @@ collections:
               - { label: Действует до, name: until, widget: datetime, date_format: "DD.MM.YYYY", time_format: false, format: "YYYY-MM-DD", required: false, hint: "Последний день акции. После этой даты акция сама уйдёт в архив" }
               - { label: В архиве (убрать из действующих сейчас), name: archived, widget: boolean, required: false, default: false }
 
+  - name: loyalty
+    label: Система лояльности
+    files:
+      - name: loyalty
+        label: Бонусы и кэшбэк
+        file: content/loyalty.json
+        fields:
+          - { label: Надпись над заголовком, name: label, widget: string }
+          - { label: Заголовок, name: title, widget: string }
+          - { label: Подпись над лестницей кэшбэка, name: cashbackTitle, widget: string }
+          - label: Ступени кэшбэка
+            name: tiers
+            widget: list
+            label_singular: ступень
+            summary: "{{fields.percent}} {{fields.condition}}"
+            hint: "Порядок важен: чем ниже в списке, тем выше сумма. Процент в первой ступени показывается мельче всех"
+            fields:
+              - { label: Процент, name: percent, widget: string, hint: "Например: 5%" }
+              - { label: Условие, name: condition, widget: string, hint: "Например: при сумме покупок от 10 000 ₽" }
+          - label: Бонусы (реферальная программа, новым клиентам и т. д.)
+            name: perks
+            widget: list
+            label_singular: бонус
+            summary: "{{fields.title}} — {{fields.value}}"
+            fields:
+              - { label: Название, name: title, widget: string }
+              - { label: Крупное значение, name: value, widget: string, hint: "Например: 500 ₽, 10%, 15%" }
+              - { label: Описание, name: text, widget: text }
+          - label: Условия (чёрная плашка внизу)
+            name: rules
+            widget: list
+            hint: "Короткие строки, например: Срок действия всех бонусов — 30 дней"
+            field: { label: Условие, name: rule, widget: string }
+
   - name: pages
     label: Тексты страниц
     files:
@@ -210,6 +244,7 @@ collections:
               - { label: Телефон, name: phone, widget: string, required: false, hint: "+7 999 000-00-00" }
               - { label: Email, name: email, widget: string, required: false }
               - { label: Адрес, name: address, widget: string, required: false }
+              - { label: Яндекс — номер организации для значка рейтинга, name: yandexRating, widget: string, required: false, hint: "Число из адреса виджета «Рейтинг» в Яндекс Бизнесе (…/rating-badge/217429111843). Пусто — значок скрыт" }
               - { label: Яндекс Карты (ссылка), name: yandexMaps, widget: string, required: false }
               - { label: 2ГИС (ссылка), name: twoGis, widget: string, required: false }
           - label: Онлайн-запись DIKIDI
