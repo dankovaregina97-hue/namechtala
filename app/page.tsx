@@ -127,7 +127,7 @@ export default function HomePage() {
           <div className="rail" tabIndex={0} aria-label="Фотографии работ">
             {strip.map((work, index) => (
               <figure className="rail-item" key={`${work.image}-${index}`}>
-                <Photo src={work.image} alt={work.master ? `Работа мастера ${work.master}` : "Работа"} ratio="3 / 4" delay={(index % 4) * 70} />
+                <Photo src={work.image} alt={work.master ? `Работа мастера ${work.master}` : "Работа"} delay={(index % 4) * 70} />
                 {work.master ? <figcaption>{work.master}</figcaption> : null}
               </figure>
             ))}

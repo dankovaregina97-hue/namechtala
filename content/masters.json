@@ -137,7 +137,12 @@
           "tags": [
             "Брови"
           ],
-          "booking": "https://dikidi.ru/#widget=219865"
+          "booking": "https://dikidi.ru/#widget=219865",
+          "works": [
+            "/uploads/varya-1.webp",
+            "/uploads/varya-2.webp",
+            "/uploads/varya-3.webp"
+          ]
         }
       ]
     },
